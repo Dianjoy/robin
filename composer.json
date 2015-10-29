@@ -1,0 +1,16 @@
+{
+    "name": "dianjoy/robin",
+    "description": "a php client logging to socket.io",
+    "type": "library",
+    "require": {
+        "wisembly/elephant.io": "~3.0"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Meathill",
+            "email": "lujia.zhai@dianjoy.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
