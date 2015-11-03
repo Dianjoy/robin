@@ -5,6 +5,12 @@
     "require": {
         "wisembly/elephant.io": "~3.0"
     },
+    "repositories": [
+      {
+        "type": "git",
+        "url": "git@github.com:Dianjoy/robin.git"
+      }
+    ],
     "license": "Apache-2.0",
     "authors": [
         {
