@@ -12,5 +12,10 @@
             "email": "lujia.zhai@dianjoy.com"
         }
     ],
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "autoload": {
+        "classmap": [
+            "Robin.class.php"
+        ]
+    }
 }
