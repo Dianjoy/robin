@@ -36,16 +36,21 @@ class Robin {
 
     if ($this->has_cache && apc_exists($this->apc_key)) {
       $this->socket = apc_fetch($this->apc_key);
-    } else {
-      $url = $url . '?' . http_build_query([
-        'auth' => $auth,
-        'room' => $room,
-      ]);
-      $socket = $this->socket = new Client(new Version1X($url));
-      $socket->initialize();
-      if ($this->has_cache) {
-        apc_add($this->apc_key, $this->socket, self::$LIFE_TIME);
+      if ($this->socket) {
+        return;
       }
+    }
+
+    $url = $url . '?' . http_build_query([
+      'auth' => $auth,
+      'room' => $room,
+    ]);
+    $socket = $this->socket = new Client(new Version1X($url));
+    $socket->initialize();
+    if ($this->has_cache) {
+      apc_add($this->apc_key, $this->socket, self::$LIFE_TIME);
+    } else {
+      register_shutdown_function([$this, 'onShutdown'], $this);
     }
   }
 
@@ -58,5 +63,9 @@ class Robin {
     if ($this->has_cache) {
       apc_delete($this->apc_key);
     }
+  }
+
+  public function onShutdown( Robin $me ) {
+    $me->release();
   }
 }
