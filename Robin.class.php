@@ -54,8 +54,8 @@ class Robin {
     }
   }
 
-  public function log($data) {
-    $this->socket->emit('log', ['content' => $data]);
+  public function log() {
+    $this->socket->emit('log', ['content' => func_get_args()]);
   }
 
   public function release() {
